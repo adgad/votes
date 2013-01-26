@@ -1,0 +1,40 @@
+<div class="container">
+
+	<% if !(params['results']) %>
+		<% if  (params['vote']) || (!cookies[:voted]) %>
+			<h1>Select Your Candidate</h1>
+			<% @people.each do |person| %>
+				<a class="person" href = "people/<%=person.id%>/vote">
+					<%= person.name %>
+				</a>
+			<% end %>
+		<% else %>
+			<h1 style="text-align: center;">
+				Thank you for voting!
+			</h1>
+		<% end %>
+	<% else %>
+		<% total_votes = 0 %>
+
+		<% @people.each do |person| %>
+			<span class="name"><%= person.name %></span>
+			<span class="results"><%= person.votes %></span>
+			</a>
+			<% total_votes += person.votes %>
+		<% end %>
+		<script type="text/javascript">
+		$(document).ready(function() {
+			var perc = 0,
+			strPerc = '';
+			$('.results').each(function() {
+				perc = parseFloat((this.innerHTML / <%= total_votes %>)*100);
+				strPerc = perc.toFixed(10);
+				strPerc = perc.toString().substring(0, strPerc.length-8);
+				$(this).css('width', perc + '%');
+				this.innerHTML = strPerc + '% (' + this.innerHTML + ' votes)';
+			})
+		});
+		</script>
+	<% end %>
+</div>
+<br />
