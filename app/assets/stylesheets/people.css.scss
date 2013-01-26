@@ -4,7 +4,6 @@
 
 html body {
 	background-color:#eee;
-	color: #EEE;
 	font-family: Arial, Helvetica, sans-serif;
 	.logo {
 		img {
@@ -42,7 +41,7 @@ html body {
 		position:relative;
 		h1 { 
 			text-align: center;
-			
+			color: #eee;
 			text-shadow: -2px -3px 10px black;
 			-moz-text-shadow: -2px -3px 10px black;
 			-webkit-text-shadow: -2px -3px 10px black;
